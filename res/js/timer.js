@@ -99,8 +99,8 @@ class UI {
 
 class Storage {
 
-    static saveTime(data) { // A date object
-        localStorage.setItem(data.id, JSON.stringify(data));
+    static saveTime(cubeTime) { // A date object
+        localStorage.setItem(cubeTime.id, JSON.stringify(cubeTime));
     }
 
     static loadTimes() {
@@ -112,5 +112,27 @@ class Storage {
         }
         console.log(timeArray);
         return timeArray;
+    }
+}
+
+const CUBE_TYPES = {
+    TWO_BY_TWO: "2x2",
+    THREE_BY_THREE: "3x3",
+    FOUR_BY_FOUR: "4x4",
+    THREE_BY_THREE: "5x5",
+    SIX_BY_SIX: "6x6",
+    SEVEN_BY_SEVEN: "7x7",
+    EIGHT_BY_EIGHT: "8x8",
+    PYRAMINX: "Pyraminx",
+    MEGAMINX: "Megaminx",
+    SKEWB: "Skewb",
+    OTHER: "Other puzzle"
+}
+
+class CubeTime {
+    constructor(id, puzzleType, time) {
+        this.id = id;
+        this.puzzleType = puzzleType;
+        this.time = time;
     }
 }

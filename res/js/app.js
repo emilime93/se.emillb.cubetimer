@@ -12,13 +12,18 @@ document.getElementById('reset').addEventListener('click', () => {
     ui.displayTime(new Date(0));
 });
 document.body.addEventListener('keyup', (e) => {
-    if (!e.key === ' ')
+    e.preventDefault();
+    if (!(e.key === ' '))
         return;
     if(timer.isTimerGoing()) {
         mainStop();
     } else {
         mainStart();
     }
+});
+window.addEventListener('keydown', (e) => {
+    if (e.key === ' ' && e.target === document.body)
+        e.preventDefault();
 });
 
 function mainStart() {

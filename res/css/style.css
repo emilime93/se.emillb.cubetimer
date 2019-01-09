@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Technology';
+    src: url('../fonts/technology.ttf')
+}
+
+#display {
+    /* font-family: 'Technology', sans-serif, monospace; */
+    /* Using the technology font make the text zigzag right and left due to different characted bredth */
+    font-family: monospace;
+    font-size: 15em;
+}
