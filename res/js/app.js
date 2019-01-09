@@ -1,16 +1,6 @@
 const ui = new UI();
 const timer = new Timer(10);
 ui.displayTime(new Date(0));
-document.getElementById('start').addEventListener('click', () => {
-    mainStart();
-});
-document.getElementById('stop').addEventListener('click', () => {
-    mainStop();
-});
-document.getElementById('reset').addEventListener('click', () => {
-    timer.reset();
-    ui.displayTime(new Date(0));
-});
 document.body.addEventListener('keyup', (e) => {
     e.preventDefault();
     if (!(e.key === ' '))
@@ -21,9 +11,10 @@ document.body.addEventListener('keyup', (e) => {
         mainStart();
     }
 });
+
 window.addEventListener('keydown', (e) => {
     if (e.key === ' ' && e.target === document.body)
-        e.preventDefault();
+        e.preventDefault(); // Prevent space scrolling :)
 });
 
 function mainStart() {
@@ -35,6 +26,7 @@ function mainStart() {
 function mainStop() {
     const result = timer.stop();
     console.log('Stopped time:', result);
+    ui.addTimeToTable(result);
     Storage.saveTime(result);
 }
 

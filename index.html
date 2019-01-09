@@ -13,27 +13,26 @@
     <div class="container">
         <h1 id="display" class="center">loading...</h1>
         <hr>
-        <button id="start">Start</button>
-        <button id="stop">Stop</button>
-        <button id="reset">Reset</button>
         <select name="puzzle-type" id="puzzle-select">
-            <option value="two">2x2</option>
-            <option value="three">3x3</option>
-            <option value="four">4x4</option>
-            <option value="five">5x5</option>
-            <option value="six">6x6</option>
-            <option value="seven">7x7</option>
-            <option value="eight">8x8</option>
+            <option value="3x3">3x3</option>
+            <option value="2x2">2x2</option>
+            <option value="4x4">4x4</option>
+            <option value="5x5">5x5</option>
+            <option value="6x6">6x6</option>
+            <option value="7x7">7x7</option>
+            <option value="8x8">8x8</option>
             <option value="pyraminx">Pyraminx</option>
             <option value="megaminx">Megaminx</option>
             <option value="skewb">Skewb</option>
+            <option value="other">Other</option>
         </select>
         <table class="u-full-width">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Time</th>
-                    <th>Complete?</th>
+                    <th>Puzzle</th>
+                    <th>DNF</th>
                 </tr>
             </thead>
             <tbody id="time-table">
