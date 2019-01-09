@@ -32,7 +32,7 @@ function mainStop() {
 
 if (localStorage.length > 0) {
     console.log('Things are stored');
-    const times = Storage.loadTimes();
+    const times = Storage.loadAllTimes();
     for (let key in times) {
         ui.addTimeToTable(times[key]);
     }

@@ -151,7 +151,7 @@ class Storage {
     /**
      * Loads an array of CubeTimes from localstorage
      */
-    static loadTimes() {
+    static loadAllTimes() {
         let timeArray = [];
         for (let key in {...localStorage}) {
             if (key == "id")
@@ -161,6 +161,14 @@ class Storage {
         }
         console.log(timeArray);
         return timeArray;
+    }
+
+    /**
+     * Loads a signle CubeTime, typically for modification before saving it back
+     * @param {Number} id The ID of the CubeTime to load
+     */
+    static loadTime(id) {
+        return new CubeTime(JSON.parse(localStorage.getItem(id)));
     }
 }
 
