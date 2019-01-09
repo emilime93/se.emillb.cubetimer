@@ -9,3 +9,10 @@
     font-family: monospace;
     font-size: 15em;
 }
+
+.delete-time, .delete-time:visited, .delete-time:hover, .delete-time:link {
+    text-decoration: none;
+    color: inherit;
+    line-height: inherit;
+    font-weight: bold;
+}

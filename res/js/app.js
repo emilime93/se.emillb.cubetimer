@@ -12,6 +12,8 @@ document.body.addEventListener('keyup', (e) => {
     }
 });
 
+document.getElementById('time-table').addEventListener('click', ui.deleteTime);
+
 window.addEventListener('keydown', (e) => {
     if (e.key === ' ' && e.target === document.body)
         e.preventDefault(); // Prevent space scrolling :)

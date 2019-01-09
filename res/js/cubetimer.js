@@ -123,6 +123,20 @@ class UI {
         completeCell.textContent = cubeTime.dnf;
         row.appendChild(completeCell);
         this.table.appendChild(row);
+        const removeCell = document.createElement('td');
+        const removeButton = document.createElement('a');
+        removeButton.textContent = 'X';
+        removeButton.className = 'delete-time';
+        removeButton.href = '#';
+        removeCell.appendChild(removeButton);
+        row.appendChild(removeCell);
+    }
+
+    deleteTime(e) {
+        e.preventDefault();
+        if (e.target.className !== "delete-time")
+            return;
+        console.log("detete, number:", e.path[2].children[0].textContent);
     }
 }
 
