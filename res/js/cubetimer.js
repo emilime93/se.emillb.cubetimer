@@ -136,7 +136,8 @@ class UI {
         e.preventDefault();
         if (e.target.className !== "delete-time")
             return;
-        console.log("detete, number:", e.path[2].children[0].textContent);
+        Storage.deleteTime(e.path[2].children[0].textContent);
+        this.removeChild(e.path[2]);
     }
 }
 
@@ -160,6 +161,14 @@ class Storage {
      */
     static saveTime(cubeTime) { // A date object
         localStorage.setItem(cubeTime.id, JSON.stringify(cubeTime));
+    }
+
+    /**
+     * Deletes a stored solve/time
+     * @param {Number} id The id of the solve to delete
+     */
+    static deleteTime(id) {
+        localStorage.removeItem(id);
     }
 
     /**

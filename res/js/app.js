@@ -19,13 +19,17 @@ function puzzleChange(e) {
 }
 const select = document.getElementById('puzzle-select');
 select.addEventListener('change', puzzleChange);
-// select.addEventListener('mouseup', puzzleChange);
+select.addEventListener('keydown', puzzleChange);
 
 document.getElementById('time-table').addEventListener('click', ui.deleteTime);
 
 window.addEventListener('keydown', (e) => {
     if (e.key === ' ' && e.target === document.body) {
         e.preventDefault(); // Prevent space scrolling :)
+<<<<<<< HEAD
+=======
+        // document.body.focus();
+>>>>>>> 60fc53763ddab6c6b7a5f775065b77032496acfb
     }
 });
 
