@@ -1,73 +1,92 @@
-const ui = new UI();
-const timer = new Timer(10);
-ui.displayTime(new Date(0));
-document.body.addEventListener('keyup', (event) => {
-  event.preventDefault();
-  if (!(event.key === ' '))
-  return;
-  if(timer.isTimerGoing()) {
-    mainStop();
-  } else {
-    mainStart();
-  }
-});
-
 const NOT_STARTED = 'NOT_STARTED';
 const STARTED = 'STARTED';
 const TOUCH_STOPPED = 'TOUCH_STOPPED';
 
 let touchScenario = NOT_STARTED;
-ui.display.addEventListener('touchstart', (event) => {
-  if(timer.isTimerGoing() && touchScenario !== NOT_STARTED) {
-    mainStop();
-    touchScenario = TOUCH_STOPPED;
-  }
-});
-ui.display.addEventListener('touchend', (event) => {
-  if(!timer.isTimerGoing()) {
-    if (touchScenario === NOT_STARTED) {
-      mainStart();
-      touchScenario = STARTED;
-    } else if (touchScenario === TOUCH_STOPPED) {
-      touchScenario = NOT_STARTED;
+
+class App {
+  constructor() {
+    this.ui = new UI();
+    this.timer = new Timer(10);
+    this.ui.displayTime(new Date(0));
+
+    this.initializeEventListeners();
+
+    if (localStorage.length > 0) {
+      const times = Storage.loadAllTimes();
+      for (let key in times) {
+        this.ui.addTimeToTable(times[key]);
+      }
     }
   }
-});
 
+  initializeEventListeners() {
+    // Start and stop with 'space'
+    document.body.addEventListener('keyup', (event) => {
+      event.preventDefault();
+      if (!(event.key === ' '))
+        return;
+      if (this.timer.isTimerGoing()) {
+        this.stopTimer();
+      } else {
+        this.startTimer();
+      }
+    });
 
-function puzzleChange(e) {
-  console.log("Select event:", e);
-  e.target.blur();
-  document.body.focus();
-}
-const select = document.getElementById('puzzle-select');
-select.addEventListener('change', puzzleChange);
-select.addEventListener('keydown', puzzleChange);
+    // Prevent space from scrolling site
+    window.addEventListener('keydown', (event) => {
+      if (event.key === ' ' && event.target === document.body) {
+        event.preventDefault();
+      }
+    });
 
-document.getElementById('time-table').addEventListener('click', ui.deleteTime);
+    this.ui.display.addEventListener('touchstart', (event) => {
+      if (this.timer.isTimerGoing() && touchScenario !== NOT_STARTED) {
+        this.stopTimer();
+        touchScenario = TOUCH_STOPPED;
+      }
+    });
+    this.ui.display.addEventListener('touchend', (event) => {
+      if (!this.timer.isTimerGoing()) {
+        if (touchScenario === NOT_STARTED) {
+          this.startTimer();
+          touchScenario = STARTED;
+        } else if (touchScenario === TOUCH_STOPPED) {
+          touchScenario = NOT_STARTED;
+        }
+      }
+    });
 
-window.addEventListener('keydown', (e) => {
-  if (e.key === ' ' && e.target === document.body) {
-    e.preventDefault(); // Prevent space scrolling :)
-    // document.body.focus();
+    const select = document.getElementById('puzzle-select');
+    select.addEventListener('change', this.puzzleChangedHandler);
+    select.addEventListener('keydown', this.puzzleChangedHandler);
+
+    document.getElementById('time-table').addEventListener('click', this.ui.deleteTime);
   }
-});
 
-function mainStart() {
-  timer.start((time) => {
-    ui.displayTime(time);
-  });
-}
+  startTimer() {
+    console.log('Start timer');
+    this.timer.start((time) => {
+      this.ui.displayTime(time);
+    });
+  }
+  
+  stopTimer() {
+    console.log('Stop timer');
+    const stoppedTime = this.timer.stop();
+    const type = this.ui.cubeSelect.value;
+    const cubeTime = new CubeTime(Storage.getCurrentID(), type, stoppedTime);
+    console.log(': App -> stopTimer -> result', cubeTime);
+    this.ui.addTimeToTable(cubeTime);
+    Storage.saveTime(cubeTime);
+  }
 
-function mainStop() {
-  const result = timer.stop();
-  ui.addTimeToTable(result);
-  Storage.saveTime(result);
-}
-
-if (localStorage.length > 0) {
-  const times = Storage.loadAllTimes();
-  for (let key in times) {
-    ui.addTimeToTable(times[key]);
+  puzzleChangedHandler() {
+    // e.target.blur();
+    document.body.focus();
   }
 }
+
+// const ui = new UI();
+// const timer = new Timer(10);
+const app = new App();

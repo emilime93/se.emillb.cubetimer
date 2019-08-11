@@ -47,10 +47,8 @@ class Timer {
     
     // Build return object
     const date = new Date(this.totalTime);
-    const stoppedTime = new Timestamp(date.getMilliseconds(), date.getSeconds(), date.getMinutes());
-    const type = ui.cubeSelect.value;
     this.totalTime = 0;
-    return new CubeTime(Storage.getCurrentID(), type, stoppedTime);
+    return new Timestamp(date.getMilliseconds(), date.getSeconds(), date.getMinutes());
   }
   
   reset() {
