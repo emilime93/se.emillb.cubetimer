@@ -1,18 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
-    font-family: 'Technology';
-    src: url('../fonts/technology.ttf')
+  font-family: 'Technology';
+  src: url('../fonts/technology.ttf')
+}
+
+body {
+  width: 100%;
+  margin: 0;
 }
 
 #display {
-    /* font-family: 'Technology', sans-serif, monospace; */
-    /* Using the technology font make the text zigzag right and left due to different characted bredth */
-    font-family: monospace;
-    font-size: 15em;
+  /* font-family: 'Technology', sans-serif, monospace; */
+  /* Using the technology font make the text zigzag right and left due to different characted width. Need to find a monospaced version
+  */
+  margin: 0 auto;
+  font-family: monospace;
+  text-align: center;
+  font-size: 6em;
+  padding: 0.7em 0;
 }
 
 .delete-time, .delete-time:visited, .delete-time:hover, .delete-time:link {
-    text-decoration: none;
-    color: inherit;
-    line-height: inherit;
-    font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  line-height: inherit;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  #display {
+    font-size: 15em;
+  }
 }

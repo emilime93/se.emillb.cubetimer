@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-    <link rel="stylesheet" href="res/css/style.css">
-    <title>Cube Timer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="res/css/style.css">
+  <title>Cube Timer</title>
 </head>
 <body>
-
-    <div class="container">
-        <h1 id="display" class="center">loading...</h1>
-        <select id="puzzle-select" class="u-full-width" name="puzzle-type">
-            <option value="3x3">3x3</option>
-            <option value="2x2">2x2</option>
-            <option value="4x4">4x4</option>
-            <option value="5x5">5x5</option>
-            <option value="6x6">6x6</option>
-            <option value="7x7">7x7</option>
-            <option value="8x8">8x8</option>
-            <option value="pyraminx">Pyraminx</option>
-            <option value="megaminx">Megaminx</option>
-            <option value="skewb">Skewb</option>
-            <option value="other">Other</option>
-        </select>
-        <table class="u-full-width">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Time</th>
-                    <th>Puzzle</th>
-                    <th>DNF</th>
-                    <th></th> <!--Empty to make place for delete cross-->
-                </tr>
-            </thead>
-            <tbody id="time-table">
-
-            </tbody>
-        </table>
-    </div>
-
-    <script src="res/js/cubetimer.js"></script>
-    <script src="res/js/app.js"></script>
+  <div class="container">
+    <header>
+      <h1 id="display" class="center">loading...</h1>
+    </header>
+    <main>
+      <select id="puzzle-select" class="u-full-width" name="puzzle-type">
+        <option value="3x3">3x3</option>
+        <option value="2x2">2x2</option>
+        <option value="4x4">4x4</option>
+        <option value="5x5">5x5</option>
+        <option value="6x6">6x6</option>
+        <option value="7x7">7x7</option>
+        <option value="8x8">8x8</option>
+        <option value="pyraminx">Pyraminx</option>
+        <option value="megaminx">Megaminx</option>
+        <option value="skewb">Skewb</option>
+        <option value="other">Other</option>
+      </select>
+      <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Time</th>
+            <th>Puzzle</th>
+            <th>DNF</th>
+            <th>&nbsp;</th> <!--Empty to make place for delete cross-->
+          </tr>
+        </thead>
+        <tbody id="time-table">
+          
+        </tbody>
+      </table>
+    </main>
+  </div>
+  
+  <script src="res/js/cubetimer.js"></script>
+  <script src="res/js/app.js"></script>
 </body>
 </html>
