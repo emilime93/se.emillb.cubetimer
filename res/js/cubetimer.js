@@ -130,12 +130,15 @@ class UI {
     row.appendChild(removeCell);
   }
   
-  deleteTime(e) {
-    e.preventDefault();
-    if (e.target.className !== "delete-time")
+  deleteTime(event) {
+    event.preventDefault();
+    if (event.target.className !== "delete-time")
     return;
-    Storage.deleteTime(e.path[2].children[0].textContent);
-    this.removeChild(e.path[2]);
+    const path = event.path || event.composed && event.compsedPath();
+    const clickedRow = path.find(x => x.tagName === 'TR');
+    Storage.deleteTime(clickedRow.firstChild.textContent);
+    clickedRow.remove();
+    // this.removeChild(clickedRow);
   }
 }
 
