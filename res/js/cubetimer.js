@@ -134,7 +134,7 @@ class UI {
     event.preventDefault();
     if (event.target.className !== "delete-time")
     return;
-    const path = event.path || event.composed && event.compsedPath();
+    const path = event.path || event.composed && event.composedPath();
     const clickedRow = path.find(x => x.tagName === 'TR');
     Storage.deleteTime(clickedRow.firstChild.textContent);
     clickedRow.remove();
