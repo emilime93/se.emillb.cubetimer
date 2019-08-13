@@ -123,7 +123,7 @@ class UI {
     this.table.appendChild(row);
     const removeCell = document.createElement('td');
     const removeButton = document.createElement('a');
-    removeButton.textContent = 'X';
+    removeButton.innerHTML = '&times;';
     removeButton.className = 'delete-time';
     removeButton.href = '#';
     removeCell.appendChild(removeButton);
